@@ -1,0 +1,98 @@
+{
+  "name": "Usuario",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "apellidos": {
+      "type": "string",
+      "required": true
+    },
+    "nombre": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "coordina": {
+      "type": "hasOne",
+      "model": "Centro",
+      "foreignKey": "coordinador"
+    },
+    "grupos": {
+      "type": "hasMany",
+      "model": "Grupo",
+      "foreignKey": "tutor"
+    },
+    "matriculas": {
+      "type": "hasMany",
+      "model": "Grupo",
+      "foreignKey": "alumno",
+      "through": "Matricula"
+    },
+    "materiasimpartidas": {
+      "type": "hasMany",
+      "model": "Materiaimpartida",
+      "foreignKey": "docente"
+    },
+    "materiasmatriculadas": {
+      "type": "hasMany",
+      "model": "Materiamatriculada",
+      "foreignKey": "alumno"
+    },
+    "tutorizados": {
+      "type": "hasMany",
+      "model": "Tutorizado",
+      "foreignKey": "tutorado"
+    },
+    "tutoria": {
+      "type": "hasMany",
+      "model": "Grupo",
+      "foreignKey": "tutor"
+    },
+    "gruposcreados": {
+      "type": "hasMany",
+      "model": "Grupo",
+      "foreignKey": "creador"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "request_password_reset"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "reset_password_get"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "reset_password_post"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

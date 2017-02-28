@@ -1,0 +1,97 @@
+{
+  "name": "Grupo",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "curso": {
+      "type": "number",
+      "required": false,
+      "length": null,
+      "precision": 1,
+      "scale": 0
+    },
+    "letra": {
+      "type": "string",
+      "required": false,
+      "length": null,
+      "precision": 1,
+      "scale": 0
+    },
+    "nombre": {
+      "type": "string",
+      "required": false,
+      "length": null,
+      "precision": null,
+      "scale": null
+    },
+    "verificado": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "anyoescolarId": {
+      "type": "belongsTo",
+      "model": "Anyoescolar",
+      "foreignKey": "anyoescolar"
+    },
+    "nivelId": {
+      "type": "belongsTo",
+      "model": "Nivel",
+      "foreignKey": "nivel"
+    },
+    "materiasimpartidas": {
+      "type": "hasMany",
+      "model": "Materiaimpartida",
+      "foreignKey": "grupo"
+    },
+    "materiasmatriculadas": {
+      "type": "hasMany",
+      "model": "Materiamatriculada",
+      "foreignKey": "grupo"
+    },
+    "alumnos": {
+      "type": "hasMany",
+      "model": "Usuario",
+      "foreignKey": "grupo",
+      "through": "Matricula"
+    },
+    "userId": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "creador"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "coordinador",
+      "permission": "ALLOW",
+      "property": "create"
+     }
+  ],
+  "methods": {}
+}

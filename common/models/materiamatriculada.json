@@ -1,0 +1,42 @@
+{
+  "name": "Materiamatriculada",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "userId": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "alumno"
+    },
+    "grupoId": {
+      "type": "belongsTo",
+      "model": "Grupo",
+      "foreignKey": "grupo"
+    },
+    "materiaId": {
+      "type": "belongsTo",
+      "model": "Materia",
+      "foreignKey": "materia"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

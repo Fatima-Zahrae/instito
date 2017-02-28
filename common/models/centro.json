@@ -1,0 +1,78 @@
+{
+  "name": "Centro",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codigo": {
+      "type": "number",
+      "required": true
+    },
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "web": {
+      "type": "string"
+    },
+    "situacion": {
+      "type": "geopoint"
+    },
+    "verificado": {
+      "type": "boolean"
+    }
+  },
+  "indexes": {
+    "codigoUnico": {
+      "keys": {
+        "codigo": 1
+      },
+      "options": {
+        "unique": true
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "cursosescolares": {
+      "type": "hasMany",
+      "model": "Anyoescolar",
+      "foreignKey": "centro"
+    },
+    "userId": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "coordinador"
+    }
+  },
+  "acls": [{
+    "accessType": "*",
+    "principalType": "ROLE",
+    "principalId": "$everyone",
+    "permission": "DENY"
+  }, {
+    "accessType": "READ",
+    "principalType": "ROLE",
+    "principalId": "$everyone",
+    "permission": "ALLOW"
+  }, {
+    "accessType": "WRITE",
+    "principalType": "ROLE",
+    "principalId": "$owner",
+    "permission": "ALLOW"
+  }, {
+    "accessType": "EXECUTE",
+    "principalType": "ROLE",
+    "principalId": "$authenticated",
+    "permission": "ALLOW",
+    "property": "create"
+  }, {
+    "accessType": "*",
+    "principalType": "ROLE",
+    "principalId": "admin",
+    "permission": "ALLOW"
+  }],
+  "methods": {}
+}
