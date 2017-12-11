@@ -74,5 +74,9 @@
   "Tutorizado": {
     "dataSource": "db",
     "public": true
+  },
+  "Actividad": {
+    "dataSource": "db",
+    "public": true
   }
 }

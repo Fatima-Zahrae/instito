@@ -91,7 +91,13 @@
       "principalId": "coordinador",
       "permission": "ALLOW",
       "property": "create"
-     }
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
   ],
   "methods": {}
 }

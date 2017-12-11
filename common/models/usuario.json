@@ -57,41 +57,19 @@
       "type": "hasMany",
       "model": "Grupo",
       "foreignKey": "creador"
+    },
+    "actividads": {
+      "type": "hasMany",
+      "model": "Actividad",
+      "foreignKey": "owner"
     }
   },
   "acls": [
     {
-      "accessType": "READ",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "request_password_reset"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "reset_password_get"
-    },
-    {
-      "accessType": "EXECUTE",
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "ALLOW",
-      "property": "reset_password_post"
-    },
-    {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "admin",
-      "permission": "ALLOW"
+      "principalId": "$everyone",
+      "permission": "DENY"
     }
   ],
   "methods": {}
